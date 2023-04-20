@@ -4,65 +4,118 @@ let scores = [];
 let ordenarPor = "";
 let orden = "";
 
-function ordenarScoreboard(ordenarPor, orden){
-    let actual;
+// function ordenarScoreboard(ordenarPor, orden){
+//     let actual;
 
+//     if(ordenarPor == 'alf'){
+//         if(orden == 'dsc'){
+//             for(i=1;i<scores.length;i++){
+//                 for(j=i;j>0; j--){
+//                     if(scores[i].nombre > scores[j-1].nombre){
+//                         actual = scores[i];
+//                         scores[i] = scores[j-1];
+//                         scores[j-1] = actual;
+//                         i--;
+//                     }
+//                 }
+//             }
+//         }else{
+//             for(i=1;i<scores.length;i++){
+//                 for(j=i;j>0; j--){
+//                     if(scores[i].nombre < scores[j-1].nombre){
+//                         actual = scores[i];
+//                         scores[i] = scores[j-1];
+//                         scores[j-1] = actual;
+//                         i--;
+//                     }
+//                 }
+//             }
+//         }
+//     }else{
+//         if(orden == 'dsc'){
+//             for(i=1;i<scores.length;i++){
+//                 for(j=i;j>0; j--){
+//                     if(parseInt(scores[i].puntaje) > parseInt(scores[j-1].puntaje)){
+//                         actual = scores[i];
+//                         scores[i] = scores[j-1];
+//                         scores[j-1] = actual;
+//                         i--;
+//                     }
+//                 }
+//             }
+//         }else{
+//             for(i=1;i<scores.length;i++){
+//                 for(j=i;j>0; j--){
+//                     if(parseInt(scores[i].puntaje) < parseInt(scores[j-1].puntaje)){
+//                         actual = scores[i];
+//                         scores[i] = scores[j-1];
+//                         scores[j-1] = actual;
+//                         i--;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// };
+
+function ordenarScoreboard(ordenarPor, orden){
     if(ordenarPor == 'alf'){
         if(orden == 'dsc'){
-            for(i=1;i<scores.length;i++){
-                for(j=i;j>0; j--){
-                    if(scores[i].nombre > scores[j-1].nombre){
-                        actual = scores[i];
-                        scores[i] = scores[j-1];
-                        scores[j-1] = actual;
-                        i--;
-                    }
+            scores.sort(function (a, b) {
+                if (a.nombre < b.nombre){
+                    return 1;
+                }else if (b.nombre < a.nombre){
+                    return -1;
                 }
-            }
+                return 0;
+            });
         }else{
-            for(i=1;i<scores.length;i++){
-                for(j=i;j>0; j--){
-                    if(scores[i].nombre < scores[j-1].nombre){
-                        actual = scores[i];
-                        scores[i] = scores[j-1];
-                        scores[j-1] = actual;
-                        i--;
-                    }
+            scores.sort(function (a, b) {
+                if (a.nombre > b.nombre){
+                    return 1;
+                }else if (b.nombre > a.nombre){
+                    return -1;
                 }
-            }
+                return 0;
+            });
         }
     }else{
         if(orden == 'dsc'){
-            for(i=1;i<scores.length;i++){
-                for(j=i;j>0; j--){
-                    if(parseInt(scores[i].puntaje) > parseInt(scores[j-1].puntaje)){
-                        actual = scores[i];
-                        scores[i] = scores[j-1];
-                        scores[j-1] = actual;
-                        i--;
-                    }
+            scores.sort(function (a, b) {
+                if (a.puntaje < b.puntaje){
+                    return 1;
+                }else if (b.puntaje < a.puntaje){
+                    return -1;
                 }
-            }
+                return 0;
+            });
         }else{
-            for(i=1;i<scores.length;i++){
-                for(j=i;j>0; j--){
-                    if(parseInt(scores[i].puntaje) < parseInt(scores[j-1].puntaje)){
-                        actual = scores[i];
-                        scores[i] = scores[j-1];
-                        scores[j-1] = actual;
-                        i--;
-                    }
+            scores.sort(function (a, b) {
+                if (a.puntaje > b.puntaje){
+                    return 1;
+                }else if (b.puntaje > a.puntaje){
+                    return -1;
                 }
-            }
+                return 0;
+            });
         }
     }
 };
 
+// function mostrarScoreboard(){
+//     console.log("Scoreboard");
+//     for(i=0;i<scores.length;i++){
+//         console.log("Posición "+(i+1)+" => Nombre: "+scores[i].nombre+" - Puntaje: "+scores[i].puntaje);
+//     }
+// }
+
 function mostrarScoreboard(){
     console.log("Scoreboard");
-    for(i=0;i<scores.length;i++){
-        console.log("Posición "+(i+1)+" => Nombre: "+scores[i].nombre+" - Puntaje: "+scores[i].puntaje);
-    }
+    let i = 1;
+    scores.forEach(element => {
+        console.log("Posición "+i+" => Nombre: "+element.nombre+" - Puntaje: "+element.puntaje);
+        i++;
+    });
 }
 
 do{
